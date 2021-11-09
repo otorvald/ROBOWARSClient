@@ -20,9 +20,6 @@
 		60ECFC0F27138F6F0096D43B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC0E27138F6F0096D43B /* GameManager.swift */; };
 		60ECFC59271620D00096D43B /* ParticipantTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC58271620D00096D43B /* ParticipantTableViewDataSource.swift */; };
 		60ECFC5C271623910096D43B /* PrimitiveRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC5B271623910096D43B /* PrimitiveRobot.swift */; };
-		9B4A223027326DF90096C0EB /* ArtificialHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A222F27326DF90096C0EB /* ArtificialHelper.swift */; };
-		9BEB2FD927313E3600271120 /* ArtificialTeapot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB2FD827313E3600271120 /* ArtificialTeapot.swift */; };
-		9BEB2FDB2731490D00271120 /* ArtificialСalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB2FDA2731490D00271120 /* ArtificialСalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,9 +38,6 @@
 		60ECFC0E27138F6F0096D43B /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		60ECFC58271620D00096D43B /* ParticipantTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantTableViewDataSource.swift; sourceTree = "<group>"; };
 		60ECFC5B271623910096D43B /* PrimitiveRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveRobot.swift; sourceTree = "<group>"; };
-		9B4A222F27326DF90096C0EB /* ArtificialHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtificialHelper.swift; sourceTree = "<group>"; };
-		9BEB2FD827313E3600271120 /* ArtificialTeapot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtificialTeapot.swift; sourceTree = "<group>"; };
-		9BEB2FDA2731490D00271120 /* ArtificialСalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArtificialСalculator.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,19 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				60ECFC5B271623910096D43B /* PrimitiveRobot.swift */,
-				9BEB2FD727313DE900271120 /* CustomRobots */,
 			);
 			path = Robots;
-			sourceTree = "<group>";
-		};
-		9BEB2FD727313DE900271120 /* CustomRobots */ = {
-			isa = PBXGroup;
-			children = (
-				9B4A222F27326DF90096C0EB /* ArtificialHelper.swift */,
-				9BEB2FD827313E3600271120 /* ArtificialTeapot.swift */,
-				9BEB2FDA2731490D00271120 /* ArtificialСalculator.swift */,
-			);
-			path = CustomRobots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,17 +183,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BEB2FDB2731490D00271120 /* ArtificialСalculator.swift in Sources */,
 				60ECFC5C271623910096D43B /* PrimitiveRobot.swift in Sources */,
 				009C6A2D270B3A7800ADC396 /* MainViewController.swift in Sources */,
-				9BEB2FD927313E3600271120 /* ArtificialTeapot.swift in Sources */,
 				600CFAA2270D03DE00743FCB /* Extensions.swift in Sources */,
 				00033BDB273A81CD0025C6DE /* Ship.swift in Sources */,
 				009C6A29270B3A7800ADC396 /* AppDelegate.swift in Sources */,
 				60ECFC0F27138F6F0096D43B /* GameManager.swift in Sources */,
 				60ECFC59271620D00096D43B /* ParticipantTableViewDataSource.swift in Sources */,
 				009C6A3F270B3C6C00ADC396 /* RobotProtocol.swift in Sources */,
-				9B4A223027326DF90096C0EB /* ArtificialHelper.swift in Sources */,
 				009C6A2B270B3A7800ADC396 /* SceneDelegate.swift in Sources */,
 				600CFAA0270D038800743FCB /* FieldView.swift in Sources */,
 			);

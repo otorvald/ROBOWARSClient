@@ -57,7 +57,7 @@ class GameManager {
     
     init() {
         func createParticipants() -> [RobotProtocol] {
-            return [PrimitiveRobot(), ArtificialTeapot(), ArtificialСalculator()]
+            return [PrimitiveRobot()]
         }
         
         leftParticipants = createParticipants()
