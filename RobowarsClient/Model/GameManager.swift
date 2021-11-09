@@ -20,17 +20,13 @@ protocol GameManagerDelegate: AnyObject {
 class Participant {
     let robot: RobotProtocol
     let side: FieldSide
-    private(set) var aliveShips: [Ship]
+    let ships: [Ship]
+    var aliveShips: [Ship] { ships.filter{ !$0.isKilled } }
     
     init(robot: RobotProtocol, side: FieldSide, ships: [Ship]) {
         self.robot = robot
         self.side = side
-        self.aliveShips = ships
-    }
-    
-    func killShip(at index: Int) {
-        guard index < aliveShips.count else { return }
-        aliveShips.remove(at: index)
+        self.ships = ships
     }
 }
 
@@ -70,7 +66,7 @@ class GameManager {
         let randFlag = (Int.random(in: 0...1) % 2 == 0)
         shootingParticipant = randFlag ? currentLeftParticipant : currentRightParticipant
         receiverParticipant = randFlag ? currentRightParticipant : currentLeftParticipant
-        gamingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        gamingTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
     
     func stop() {
@@ -105,17 +101,17 @@ class GameManager {
 
         let fieldToShoot = receiverParticipant.side
         let position = shootingParticipant.robot.getNextShootingPosition()
-        guard helper.validateShootingPosition(position) else { fatalError("Incorrect Shooting Position") }
+        guard helper.validateShootingPosition(position) else {
+            shootingParticipant.robot.didHandleShoot(in: position, with: .missed)
+            swapShooterAndReceiver()
+            return
+        }
         receiverParticipant.robot.enemyDidShoot(at: position)
         var result = ShootingResult.missed
         
-        for (idx, ship) in receiverParticipant.aliveShips.enumerated() {
+        for ship in receiverParticipant.ships {
             result = ship.handleShoot(in: position)
             if result == .missed { continue }
-            if result == .killed {
-                receiverParticipant.killShip(at: idx)
-            }
-            
             break
         }
         
@@ -127,7 +123,7 @@ class GameManager {
             self.delegate?.placeShoot(at: position, onField: fieldToShoot, isHit: result != .missed)
         }
         
-        if result == .missed { swapShooterAndReceiver() }
+        if result == .missed || result == .reHit { swapShooterAndReceiver() }
     }
     
     private func swapShooterAndReceiver() {
@@ -144,7 +140,7 @@ class GameManager {
     
     private func loadShips(for robot: RobotProtocol, onField field: FieldSide) -> [Ship] {
         var shipRects = robot.getShips()
-        while(helper.validateShips(shipRects) != true) {
+        while(helper.validateShips(shipRects) != true) { //TODO: ban participant in case incorrect placement
             shipRects = robot.getShips()
         }
         delegate?.placeShips(withRects: shipRects, onField: field)
@@ -195,5 +191,3 @@ class GameManagerHelper {
         return true
     }
 }
-
-

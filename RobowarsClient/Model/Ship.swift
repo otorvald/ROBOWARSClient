@@ -17,6 +17,8 @@ class Ship {
         self.lives = Self.frameToLives(frame: frame)
     }
     
+    var isKilled: Bool { lives.isEmpty }
+    
     func handleShoot(in position: CGPoint) -> ShootingResult {
         guard frame.contains(position) else { return .missed }
         if let index = lives.firstIndex(of: position) {
