@@ -93,26 +93,42 @@ Cg
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3x-oQ-qhU">
-                                <rect key="frame" x="713" y="846" width="220" height="70"/>
+                                <rect key="frame" x="588" y="836" width="220" height="75"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="BNN-rv-Qp9"/>
-                                    <constraint firstAttribute="height" constant="70" id="UH5-Qk-X0I"/>
+                                    <constraint firstAttribute="height" constant="75" id="CP1-rF-jkd"/>
+                                    <constraint firstAttribute="width" constant="220" id="ieD-aX-Zxz"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start/Stop">
+                                <buttonConfiguration key="configuration" style="plain" title="Start">
                                     <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="didTapStartStopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XxV-Bn-2IW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edi-Eo-XLc">
+                                <rect key="frame" x="838" y="836" width="220" height="75"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Mdy-6X-o8z"/>
+                                    <constraint firstAttribute="width" constant="220" id="o5u-nE-FHW"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Pause">
+                                    <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapPauseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gNJ-6d-ltX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="o3x-oQ-qhU" firstAttribute="centerX" secondItem="tVc-rM-VHf" secondAttribute="centerX" id="4Qr-gq-TQY"/>
+                            <constraint firstItem="o3x-oQ-qhU" firstAttribute="top" secondItem="6pe-EI-oss" secondAttribute="bottom" constant="30" id="3Pd-Ox-vWS"/>
                             <constraint firstItem="paC-tj-zpc" firstAttribute="leading" secondItem="Z6l-9R-vGN" secondAttribute="trailing" constant="30" id="4Rt-nI-rlB"/>
                             <constraint firstItem="paC-tj-zpc" firstAttribute="bottom" secondItem="Z6l-9R-vGN" secondAttribute="bottom" id="4Xt-RL-JWZ"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="width" secondItem="SKp-RC-dtk" secondAttribute="width" id="5bg-3X-UBD"/>
@@ -124,15 +140,16 @@ Cg
                             <constraint firstItem="jy2-RE-EvV" firstAttribute="leading" secondItem="paC-tj-zpc" secondAttribute="leading" id="LCH-sS-cck"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="leading" secondItem="SKp-RC-dtk" secondAttribute="leading" id="M4R-fH-2Fm"/>
                             <constraint firstItem="Z6l-9R-vGN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="No9-uH-aRS"/>
-                            <constraint firstItem="o3x-oQ-qhU" firstAttribute="top" secondItem="6pe-EI-oss" secondAttribute="bottom" priority="999" constant="40" id="RXf-sY-g2G"/>
+                            <constraint firstItem="Edi-Eo-XLc" firstAttribute="leading" secondItem="paC-tj-zpc" secondAttribute="leading" id="PHt-oJ-YCI"/>
                             <constraint firstItem="6pe-EI-oss" firstAttribute="trailing" secondItem="Z6l-9R-vGN" secondAttribute="trailing" id="V50-vg-bw6"/>
                             <constraint firstItem="7ID-6J-arA" firstAttribute="top" secondItem="SKp-RC-dtk" secondAttribute="bottom" constant="10" id="Zrl-Xn-dLA"/>
                             <constraint firstItem="SKp-RC-dtk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="aYo-iB-dvI"/>
                             <constraint firstItem="Z6l-9R-vGN" firstAttribute="leading" secondItem="tVc-rM-VHf" secondAttribute="leading" id="akn-iO-hur"/>
                             <constraint firstAttribute="bottom" secondItem="dZL-mr-S5W" secondAttribute="bottom" constant="20" id="bps-l0-9cV"/>
+                            <constraint firstItem="Edi-Eo-XLc" firstAttribute="top" secondItem="jy2-RE-EvV" secondAttribute="bottom" constant="30" id="cDf-ho-Ssa"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="trailing" secondItem="SKp-RC-dtk" secondAttribute="trailing" id="dzT-Ew-fs6"/>
+                            <constraint firstItem="o3x-oQ-qhU" firstAttribute="trailing" secondItem="Z6l-9R-vGN" secondAttribute="trailing" id="fav-re-pWX"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="centerX" secondItem="7ID-6J-arA" secondAttribute="centerX" id="kmi-Cc-0mr"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="o3x-oQ-qhU" secondAttribute="bottom" constant="15" id="nAh-Ir-Fb0"/>
                             <constraint firstItem="SKp-RC-dtk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="q5q-kW-LuV"/>
                             <constraint firstItem="paC-tj-zpc" firstAttribute="top" secondItem="Z6l-9R-vGN" secondAttribute="top" id="ro4-hB-Fxz"/>
                             <constraint firstItem="tVc-rM-VHf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="vkP-uv-thh"/>
@@ -150,6 +167,7 @@ Cg
                         <outlet property="mainInfoLabel" destination="tVc-rM-VHf" id="DQ9-eo-A7j"/>
                         <outlet property="participantSelectionLeadingSpaceConstraint" destination="aYo-iB-dvI" id="j2P-GK-fm2"/>
                         <outlet property="participantSelectorWidthConstraint" destination="orX-Dq-rMn" id="ckm-e7-LUE"/>
+                        <outlet property="pauseButton" destination="Edi-Eo-XLc" id="PMd-Ow-ds0"/>
                         <outlet property="rightFieldContentView" destination="paC-tj-zpc" id="oio-rC-LWL"/>
                         <outlet property="rightParticipantSelectorTableView" destination="dZL-mr-S5W" id="fNE-cp-6oh"/>
                         <outlet property="rightRobotMessageLabel" destination="jy2-RE-EvV" id="hrf-2G-mZn"/>

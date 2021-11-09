@@ -7,6 +7,13 @@
 
 import UIKit
 
+enum StartButtonState {
+    case start
+    case stop
+    case reset
+    case disabled
+}
+
 fileprivate struct ViewConfig {
     static let participantSelectorWidth: CGFloat = 250
     static let participantSelectorLeadingSpace: CGFloat = 30
@@ -24,6 +31,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var leftRobotMessageLabel: UILabel!
     @IBOutlet weak var rightRobotMessageLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
     
     @IBOutlet weak var participantSelectorWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var participantSelectionLeadingSpaceConstraint: NSLayoutConstraint!
@@ -32,19 +40,20 @@ class MainViewController: UIViewController {
     var rightFieldView: FieldView?
     var leftFieldView: FieldView?
     
-    private var startPressed = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         performInitialConfiguration()
         setupTableViews()
         gameManager.delegate = self
+        
+        updateStartStopButtonState(.disabled)
+        pauseButton.isEnabled = false
     }
     
     private func performInitialConfiguration() {
-        leftRobotMessageLabel.text = nil
-        rightRobotMessageLabel.text = nil
+        leftRobotMessageLabel.text = "***"
+        rightRobotMessageLabel.text = "***"
         setupEmptyFields(withSize: 20)
     }
     
@@ -64,7 +73,6 @@ class MainViewController: UIViewController {
         let duration = animated ? ViewConfig.participantSelectorAnimatingDuration : 0
         let leadingSpace = show ? ViewConfig.participantSelectorLeadingSpace : 0
         versulLabel.isHidden = !show
-        mainInfoLabel.isHidden = !show
         participantSelectionLeadingSpaceConstraint.constant = leadingSpace
         
         UIView.animate(withDuration: duration) {
@@ -83,17 +91,52 @@ class MainViewController: UIViewController {
         rightParticipantSelectorTableView.reloadData()
     }
     
-    @IBAction func didTapStartStopButton(_ sender: UIButton) {
-        startPressed.toggle()
-        startPressed ? gameManager.startGame() : gameManager.stopGame()
-        showParticipantSelectors(!startPressed, animated: true)
+    private func updateStartStopButtonState(_ state: StartButtonState) {
+        switch state {
+        case .start:
+            startStopButton.setTitle("Start", for: .normal)
+            startStopButton.isEnabled = true
+        case .stop:
+            startStopButton.setTitle("Stop", for: .normal)
+            startStopButton.isEnabled = true
+        case .disabled:
+            startStopButton.isEnabled = false
+        case .reset:
+            startStopButton.isEnabled = true
+            startStopButton.setTitle("Reset", for: .normal)
+        }
+        
+        startStopButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)
     }
+    
+    @IBAction func didTapStartStopButton(_ sender: UIButton) {
+        switch gameManager.currentState {
+        case .ready:
+            gameManager.startGame()
+            showParticipantSelectors(false, animated: true)
+            updateStartStopButtonState(.stop)
+        case .inProgress:
+            gameManager.stopGame()
+            showParticipantSelectors(true, animated: true)
+            updateStartStopButtonState(.reset)
+        case .finished:
+            gameManager.resetGame()
+            updateStartStopButtonState(.start)
+        default:
+            break
+        }
+    }
+    
+    @IBAction func didTapPauseButton(_ sender: UIButton) {
+        
+    }
+    
 }
 
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameManager.rightParticipants.count
+        return gameManager.rightRobots.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,7 +146,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell(style: .default, reuseIdentifier: id)
         }
         
-        cell?.textLabel?.text = gameManager.rightParticipants[indexPath.row].name
+        cell?.textLabel?.text = gameManager.rightRobots[indexPath.row].name
         cell?.backgroundColor = .darkGray
         cell?.textLabel?.textColor = .systemGreen
         cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
@@ -130,17 +173,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension MainViewController: GameManagerDelegate {
-    func updateParticipantName(_ name: String, for side: FieldSide) {
+    func updateParticipantMessage(_ message: String, for side: FieldSide) {
         if side == .left {
-            leftRobotMessageLabel.text = name
+            leftRobotMessageLabel.text = message
         } else {
-            rightRobotMessageLabel.text = name
+            rightRobotMessageLabel.text = message
         }
-    }
-    
-    func showFinishGameMessages(left: String, right: String) {
-        leftRobotMessageLabel.text = left
-        rightRobotMessageLabel.text = right
     }
     
     func placeShoot(at point: CGPoint, onField field: FieldSide, isHit: Bool) {
@@ -154,6 +192,22 @@ extension MainViewController: GameManagerDelegate {
     }
     
     func gameStateDidChange(to state: GameState) {
-        
+        switch state {
+        case .notReady:
+            mainInfoLabel.text = "Please choose the participants"
+            updateStartStopButtonState(.disabled)
+        case .ready:
+            mainInfoLabel.text = "Press Start to begin"
+            updateStartStopButtonState(.start)
+            showParticipantSelectors(true, animated: true)
+        case .inProgress:
+            mainInfoLabel.text = "Game in progress"
+            updateStartStopButtonState(.stop)
+        case .finished:
+            mainInfoLabel.text = "Game has been finished"
+            updateStartStopButtonState(.reset)
+        case .paused:
+            mainInfoLabel.text = "Game has been paused. Press Resume to continue."
+        }
     }
 }
