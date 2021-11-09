@@ -11,9 +11,9 @@ import UIKit
 class PrimitiveRobot: RobotProtocol {
     //MARK: - Robot Protocol Properties
     let name = "Vedro Dyravoe"
-    let greetingMessage: String? = "I don't have idea what i'm doing"
-    let winMessage: String? = "Whaaaat??"
-    let loseMessage: String? = "Okay("
+    let greetingMessage: String = "I don't have idea what i'm doing"
+    let winMessage: String = "Whaaaat??"
+    let loseMessage: String = "Okay("
     
     //MARK: - Private Properties
     var fieldRect: CGRect?

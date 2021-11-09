@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		00033BDB273A81CD0025C6DE /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BDA273A81CD0025C6DE /* Ship.swift */; };
+		00033BE4273A901E0025C6DE /* ArtificialHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE1273A901E0025C6DE /* ArtificialHelper.swift */; };
+		00033BE5273A901E0025C6DE /* ArtificialСalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE2273A901E0025C6DE /* ArtificialСalculator.swift */; };
+		00033BE6273A901E0025C6DE /* ArtificialTeapot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */; };
 		009C6A29270B3A7800ADC396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A28270B3A7800ADC396 /* AppDelegate.swift */; };
 		009C6A2B270B3A7800ADC396 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A2A270B3A7800ADC396 /* SceneDelegate.swift */; };
 		009C6A2D270B3A7800ADC396 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A2C270B3A7800ADC396 /* MainViewController.swift */; };
@@ -18,12 +21,14 @@
 		600CFAA0270D038800743FCB /* FieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CFA9F270D038800743FCB /* FieldView.swift */; };
 		600CFAA2270D03DE00743FCB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CFAA1270D03DE00743FCB /* Extensions.swift */; };
 		60ECFC0F27138F6F0096D43B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC0E27138F6F0096D43B /* GameManager.swift */; };
-		60ECFC59271620D00096D43B /* ParticipantTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC58271620D00096D43B /* ParticipantTableViewDataSource.swift */; };
 		60ECFC5C271623910096D43B /* PrimitiveRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC5B271623910096D43B /* PrimitiveRobot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00033BDA273A81CD0025C6DE /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
+		00033BE1273A901E0025C6DE /* ArtificialHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtificialHelper.swift; sourceTree = "<group>"; };
+		00033BE2273A901E0025C6DE /* ArtificialСalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArtificialСalculator.swift"; sourceTree = "<group>"; };
+		00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtificialTeapot.swift; sourceTree = "<group>"; };
 		009C6A25270B3A7800ADC396 /* RobowarsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobowarsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009C6A28270B3A7800ADC396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		009C6A2A270B3A7800ADC396 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +41,6 @@
 		600CFA9F270D038800743FCB /* FieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldView.swift; sourceTree = "<group>"; };
 		600CFAA1270D03DE00743FCB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60ECFC0E27138F6F0096D43B /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		60ECFC58271620D00096D43B /* ParticipantTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantTableViewDataSource.swift; sourceTree = "<group>"; };
 		60ECFC5B271623910096D43B /* PrimitiveRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveRobot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,9 +71,18 @@
 			children = (
 				009C6A2C270B3A7800ADC396 /* MainViewController.swift */,
 				600CFA9F270D038800743FCB /* FieldView.swift */,
-				60ECFC58271620D00096D43B /* ParticipantTableViewDataSource.swift */,
 			);
 			path = "View&Controller";
+			sourceTree = "<group>";
+		};
+		00033BE0273A901E0025C6DE /* CustomRobots */ = {
+			isa = PBXGroup;
+			children = (
+				00033BE1273A901E0025C6DE /* ArtificialHelper.swift */,
+				00033BE2273A901E0025C6DE /* ArtificialСalculator.swift */,
+				00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */,
+			);
+			path = CustomRobots;
 			sourceTree = "<group>";
 		};
 		009C6A1C270B3A7800ADC396 = {
@@ -107,6 +120,7 @@
 		60ECFC5A271623520096D43B /* Robots */ = {
 			isa = PBXGroup;
 			children = (
+				00033BE0273A901E0025C6DE /* CustomRobots */,
 				60ECFC5B271623910096D43B /* PrimitiveRobot.swift */,
 			);
 			path = Robots;
@@ -189,8 +203,10 @@
 				00033BDB273A81CD0025C6DE /* Ship.swift in Sources */,
 				009C6A29270B3A7800ADC396 /* AppDelegate.swift in Sources */,
 				60ECFC0F27138F6F0096D43B /* GameManager.swift in Sources */,
-				60ECFC59271620D00096D43B /* ParticipantTableViewDataSource.swift in Sources */,
+				00033BE6273A901E0025C6DE /* ArtificialTeapot.swift in Sources */,
+				00033BE4273A901E0025C6DE /* ArtificialHelper.swift in Sources */,
 				009C6A3F270B3C6C00ADC396 /* RobotProtocol.swift in Sources */,
+				00033BE5273A901E0025C6DE /* ArtificialСalculator.swift in Sources */,
 				009C6A2B270B3A7800ADC396 /* SceneDelegate.swift in Sources */,
 				600CFAA0270D038800743FCB /* FieldView.swift in Sources */,
 			);

@@ -12,9 +12,19 @@ enum FieldSide {
     case left
 }
 
+enum GameState {
+    case notReady
+    case ready
+    case inProgress
+    case finished
+    case paused
+}
+
 protocol GameManagerDelegate: AnyObject {
     func placeShips(withRects rects: [CGRect], onField field: FieldSide)
     func placeShoot(at point: CGPoint, onField field: FieldSide, isHit: Bool)
+    func updateParticipantMessage(_ message: String, for side: FieldSide)
+    func gameStateDidChange(to state: GameState)
 }
 
 class Participant {
@@ -33,8 +43,8 @@ class Participant {
 class GameManager {
     private let helper = GameManagerHelper()
     private(set) var isGameInProgrees = false
-    private(set) var leftParticipants: [RobotProtocol]
-    private(set) var rightParticipants: [RobotProtocol]
+    private(set) var leftRobots: [RobotProtocol]
+    private(set) var rightRobots: [RobotProtocol]
     private(set) var currentLeftParticipant: Participant?
     private(set) var currentRightParticipant: Participant?
     
@@ -48,49 +58,77 @@ class GameManager {
     
     private weak var gamingTimer: Timer?
     private var moveCount = 0
+    private(set) var currentState: GameState = .notReady {
+        didSet {
+            delegate?.gameStateDidChange(to: currentState)
+        }
+    }
+    
+    private var selectedLeftRobotIndex: Int?
+    private var selectedRightRobotIndex: Int?
     
     weak var delegate: GameManagerDelegate?
     
     init() {
         func createParticipants() -> [RobotProtocol] {
-            return [PrimitiveRobot()]
+            return [PrimitiveRobot(), ArtificialTeapot(), ArtificialСalculator()]
         }
         
-        leftParticipants = createParticipants()
-        rightParticipants = createParticipants()
+        leftRobots = createParticipants()
+        rightRobots = createParticipants()
     }
     
-    func start() {
+    func startGame() {
         guard let _ = currentLeftParticipant,
               let _ = currentRightParticipant else { return }
         let randFlag = (Int.random(in: 0...1) % 2 == 0)
         shootingParticipant = randFlag ? currentLeftParticipant : currentRightParticipant
         receiverParticipant = randFlag ? currentRightParticipant : currentLeftParticipant
         gamingTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        currentState = .inProgress
     }
     
-    func stop() {
+    func pauseGame() {
         gamingTimer?.invalidate()
+        currentState = .paused
+    }
+    
+    func stopGame() {
+        gamingTimer?.invalidate()
+        currentState = .finished
+    }
+    
+    func resetGame() {
+        guard let left = selectedLeftRobotIndex, let right = selectedRightRobotIndex else { return }
+        setLeftParticipant(index: left)
+        setRightParticipant(index: right)
+        currentState = .ready
     }
     
     func setLeftParticipant(index: Int) {
-        guard index < leftParticipants.count else { return }
+        guard index < leftRobots.count else { return }
         helper.updateRules(fieldRect: fieldRect, shipsCount: shipsCount, shipSizes: shipSizes)
-        let robot = leftParticipants[index]
+        let robot = leftRobots[index]
+        selectedLeftRobotIndex = index
         informAboutRules(robot: robot)
         let side: FieldSide = .left
         let ships = loadShips(for: robot, onField: side)
         currentLeftParticipant = Participant(robot: robot, side: side, ships: ships)
+        delegate?.updateParticipantMessage(robot.greetingMessage, for: .left)
+        updateToReadyStateIfNeeded()
     }
     
     func setRightParticipant(index: Int) {
-        guard index < rightParticipants.count else { return }
+        guard index < rightRobots.count else { return }
         helper.updateRules(fieldRect: fieldRect, shipsCount: shipsCount, shipSizes: shipSizes)
-        let robot = rightParticipants[index]
+        let robot = rightRobots[index]
+        selectedRightRobotIndex = index
         informAboutRules(robot: robot)
         let side: FieldSide = .right
         let ships = loadShips(for: robot, onField: side)
         currentRightParticipant = Participant(robot: robot, side: side, ships: ships)
+        delegate?.updateParticipantMessage(robot.greetingMessage, for: .right)
+        updateToReadyStateIfNeeded()
     }
     
     @objc private func fireTimer() {
@@ -117,13 +155,27 @@ class GameManager {
         
         shootingParticipant.robot.didHandleShoot(in: position, with: result)
         
-        if receiverParticipant.aliveShips.isEmpty { stop() }
+        //If there is a winner
+        if receiverParticipant.aliveShips.isEmpty {
+            showRobotsFinalMessages()
+            shootingParticipant.robot.gameOver()
+            receiverParticipant.robot.gameOver()
+            stopGame()
+        }
         
         DispatchQueue.main.async {
             self.delegate?.placeShoot(at: position, onField: fieldToShoot, isHit: result != .missed)
         }
         
         if result == .missed || result == .reHit { swapShooterAndReceiver() }
+    }
+    
+    private func updateToReadyStateIfNeeded() {
+        guard let _ = currentLeftParticipant,
+              let _ = currentRightParticipant,
+              currentState != .ready else { return }
+        
+        currentState = .ready
     }
     
     private func swapShooterAndReceiver() {
@@ -145,6 +197,17 @@ class GameManager {
         }
         delegate?.placeShips(withRects: shipRects, onField: field)
         return shipRects.map{ Ship(frame: $0) }
+    }
+    
+    private func showRobotsFinalMessages() {
+        guard let shootingParticipant = shootingParticipant,
+              let receiverParticipant = receiverParticipant else { return }
+        let winnerMessage = shootingParticipant.robot.winMessage
+        let looserMessage = receiverParticipant.robot.loseMessage
+        let leftMessage = shootingParticipant.side == .left ? winnerMessage : looserMessage
+        let rightMessage = receiverParticipant.side == .right ? looserMessage : winnerMessage
+        delegate?.updateParticipantMessage(leftMessage, for: .left)
+        delegate?.updateParticipantMessage(rightMessage, for: .right)
     }
 }
 

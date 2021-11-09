@@ -28,13 +28,13 @@ protocol RobotProtocol {
     var name: String { get }
     
     //This message will be printed on the start of the duel
-    var greetingMessage: String? { get }
+    var greetingMessage: String { get }
     
     //This message will be printed in case of your Robot win
-    var winMessage: String? { get }
+    var winMessage: String { get }
     
     //This message will be printed in case of your Robot lose
-    var loseMessage: String? { get }
+    var loseMessage: String { get }
     
     /*This method will be called on duel start, and your Robot will be informed about field rect.
      By default Robowars rect has 20x20 points with origin 0.0.
