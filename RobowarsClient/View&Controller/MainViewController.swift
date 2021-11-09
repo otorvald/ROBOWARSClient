@@ -21,8 +21,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var leftFieldContentView: UIView!
     @IBOutlet weak var rightFieldContentView: UIView!
     @IBOutlet weak var mainInfoLabel: UILabel!
-    @IBOutlet weak var leftRobotName: UILabel!
-    @IBOutlet weak var rightRobotName: UILabel!
+    @IBOutlet weak var leftRobotMessageLabel: UILabel!
+    @IBOutlet weak var rightRobotMessageLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
     
     @IBOutlet weak var participantSelectorWidthConstraint: NSLayoutConstraint!
@@ -43,8 +43,8 @@ class MainViewController: UIViewController {
     }
     
     private func performInitialConfiguration() {
-        leftRobotName.text = nil
-        rightRobotName.text = nil
+        leftRobotMessageLabel.text = nil
+        rightRobotMessageLabel.text = nil
         setupEmptyFields(withSize: 20)
     }
     
@@ -85,8 +85,8 @@ class MainViewController: UIViewController {
     
     @IBAction func didTapStartStopButton(_ sender: UIButton) {
         startPressed.toggle()
-        startPressed ? gameManager.start() : gameManager.stop()
-        //showParticipantSelectors(startPressed, animated: false)
+        startPressed ? gameManager.startGame() : gameManager.stopGame()
+        showParticipantSelectors(!startPressed, animated: true)
     }
 }
 
@@ -104,6 +104,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell?.textLabel?.text = gameManager.rightParticipants[indexPath.row].name
+        cell?.backgroundColor = .darkGray
+        cell?.textLabel?.textColor = .systemGreen
+        cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        cell?.selectionStyle = .gray
         
         return cell!
     }
@@ -126,6 +130,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension MainViewController: GameManagerDelegate {
+    func updateParticipantName(_ name: String, for side: FieldSide) {
+        if side == .left {
+            leftRobotMessageLabel.text = name
+        } else {
+            rightRobotMessageLabel.text = name
+        }
+    }
+    
+    func showFinishGameMessages(left: String, right: String) {
+        leftRobotMessageLabel.text = left
+        rightRobotMessageLabel.text = right
+    }
+    
     func placeShoot(at point: CGPoint, onField field: FieldSide, isHit: Bool) {
         let fieldView = field == .left ? leftFieldView : rightFieldView
         fieldView?.update(point: point, with: isHit ? .black : .red, isShoot: true)
@@ -134,5 +151,9 @@ extension MainViewController: GameManagerDelegate {
     func placeShips(withRects rects: [CGRect], onField field: FieldSide) {
         let fieldView = field == .left ? leftFieldView : rightFieldView
         fieldView?.place(rects: rects, color: .blue, shouldReset: true)
+    }
+    
+    func gameStateDidChange(to state: GameState) {
+        
     }
 }

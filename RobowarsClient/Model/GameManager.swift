@@ -12,9 +12,20 @@ enum FieldSide {
     case left
 }
 
+enum GameState {
+    case notReady
+    case ready
+    case inProgress
+    case finished
+    case paused
+}
+
 protocol GameManagerDelegate: AnyObject {
     func placeShips(withRects rects: [CGRect], onField field: FieldSide)
     func placeShoot(at point: CGPoint, onField field: FieldSide, isHit: Bool)
+    func showFinishGameMessages(left: String, right: String)
+    func updateParticipantName(_ name: String, for side: FieldSide)
+    func gameStateDidChange(to state: GameState)
 }
 
 class Participant {
@@ -52,28 +63,33 @@ class GameManager {
     
     private weak var gamingTimer: Timer?
     private var moveCount = 0
+    private(set) var currentState: GameState = .notReady {
+        didSet {
+            delegate?.gameStateDidChange(to: currentState)
+        }
+    }
     
     weak var delegate: GameManagerDelegate?
     
     init() {
         func createParticipants() -> [RobotProtocol] {
-            return [PrimitiveRobot()]
+            return [PrimitiveRobot(), ArtificialTeapot(), ArtificialСalculator()]
         }
         
         leftParticipants = createParticipants()
         rightParticipants = createParticipants()
     }
     
-    func start() {
+    func startGame() {
         guard let _ = currentLeftParticipant,
               let _ = currentRightParticipant else { return }
         let randFlag = (Int.random(in: 0...1) % 2 == 0)
         shootingParticipant = randFlag ? currentLeftParticipant : currentRightParticipant
         receiverParticipant = randFlag ? currentRightParticipant : currentLeftParticipant
-        gamingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        gamingTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
     
-    func stop() {
+    func stopGame() {
         gamingTimer?.invalidate()
     }
     
@@ -85,6 +101,7 @@ class GameManager {
         let side: FieldSide = .left
         let ships = loadShips(for: robot, onField: side)
         currentLeftParticipant = Participant(robot: robot, side: side, ships: ships)
+        delegate?.updateParticipantName(robot.name, for: .left)
     }
     
     func setRightParticipant(index: Int) {
@@ -95,6 +112,7 @@ class GameManager {
         let side: FieldSide = .right
         let ships = loadShips(for: robot, onField: side)
         currentRightParticipant = Participant(robot: robot, side: side, ships: ships)
+        delegate?.updateParticipantName(robot.name, for: .right)
     }
     
     @objc private func fireTimer() {
@@ -121,7 +139,11 @@ class GameManager {
         
         shootingParticipant.robot.didHandleShoot(in: position, with: result)
         
-        if receiverParticipant.aliveShips.isEmpty { stop() }
+        //If there is a winner
+        if receiverParticipant.aliveShips.isEmpty {
+            showRobotsFinalMessages()
+            stopGame()
+        }
         
         DispatchQueue.main.async {
             self.delegate?.placeShoot(at: position, onField: fieldToShoot, isHit: result != .missed)
@@ -149,6 +171,16 @@ class GameManager {
         }
         delegate?.placeShips(withRects: shipRects, onField: field)
         return shipRects.map{ Ship(frame: $0) }
+    }
+    
+    private func showRobotsFinalMessages() {
+        guard let shootingParticipant = shootingParticipant,
+              let receiverParticipant = receiverParticipant else { return }
+        let winnerMessage = shootingParticipant.robot.winMessage
+        let looserMessage = receiverParticipant.robot.loseMessage
+        let leftMessage = shootingParticipant.side == .left ? winnerMessage : looserMessage
+        let rightMessage = receiverParticipant.side == .right ? looserMessage : winnerMessage
+        delegate?.showFinishGameMessages(left: leftMessage, right: rightMessage)
     }
 }
 
