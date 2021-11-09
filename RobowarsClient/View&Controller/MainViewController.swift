@@ -145,7 +145,7 @@ extension MainViewController: GameManagerDelegate {
     
     func placeShoot(at point: CGPoint, onField field: FieldSide, isHit: Bool) {
         let fieldView = field == .left ? leftFieldView : rightFieldView
-        fieldView?.update(point: point, with: isHit ? .black : .red, isShoot: true)
+        fieldView?.update(point: point, with: isHit ? .black : .red, textColor: isHit ? .white : .black)
     }
     
     func placeShips(withRects rects: [CGRect], onField field: FieldSide) {

@@ -56,10 +56,11 @@ class FieldView: UIView {
         
     }
     
-    func update(point: CGPoint, with color: UIColor, isShoot: Bool = false) {
+    func update(point: CGPoint, with color: UIColor, textColor: UIColor, resetCounter: Bool = false) {
         let cell = getCell(forRow: Int(point.y), column: Int(point.x))
         if let label = cell as? UILabel {
-            let tag = isShoot ? label.tag + 1 : 0
+            let tag = resetCounter ? 0 : label.tag + 1
+            label.textColor = textColor
             label.text = tag > 1 ? tag.description : nil
             label.tag = tag
         }
@@ -109,7 +110,7 @@ class FieldView: UIView {
     private func makeCellView() -> UIView {
         let view = UILabel(frame: .zero)
         view.textColor = .black
-        view.font = .systemFont(ofSize: 16)
+        view.font = .boldSystemFont(ofSize: 16)
         view.minimumScaleFactor = 0.3
         view.textAlignment = .center
         view.backgroundColor = ViewConfig.emptyCellColor

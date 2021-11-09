@@ -11,6 +11,7 @@ enum ShootingResult {
     case killed
     case damaged
     case missed
+    case reHit
 }
 
 /*If you want to take a part in Robowars Tournament, you need to implement your own Robot.
