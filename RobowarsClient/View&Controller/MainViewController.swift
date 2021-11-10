@@ -14,6 +14,12 @@ enum StartButtonState {
     case disabled
 }
 
+enum PauseButtonState {
+    case pause
+    case resume
+    case disabled
+}
+
 fileprivate struct ViewConfig {
     static let participantSelectorWidth: CGFloat = 250
     static let participantSelectorLeadingSpace: CGFloat = 30
@@ -30,6 +36,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainInfoLabel: UILabel!
     @IBOutlet weak var leftRobotMessageLabel: UILabel!
     @IBOutlet weak var rightRobotMessageLabel: UILabel!
+    @IBOutlet weak var leftRobotNameLabel: UILabel!
+    @IBOutlet weak var rightRobotNameLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     
@@ -48,12 +56,14 @@ class MainViewController: UIViewController {
         gameManager.delegate = self
         
         updateStartStopButtonState(.disabled)
-        pauseButton.isEnabled = false
+        updatePauseButtonState(.disabled)
     }
     
     private func performInitialConfiguration() {
         leftRobotMessageLabel.text = "***"
         rightRobotMessageLabel.text = "***"
+        leftRobotNameLabel.text = "***"
+        rightRobotNameLabel.text = "***"
         setupEmptyFields(withSize: 20)
     }
     
@@ -105,30 +115,43 @@ class MainViewController: UIViewController {
             startStopButton.isEnabled = true
             startStopButton.setTitle("Reset", for: .normal)
         }
-        
-        startStopButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)
+    }
+    
+    private func updatePauseButtonState(_ state: PauseButtonState) {
+        switch state {
+        case .pause:
+            pauseButton.setTitle("Pause", for: .normal)
+            pauseButton.isEnabled = true
+        case .resume:
+            pauseButton.setTitle("Resume", for: .normal)
+            pauseButton.isEnabled = true
+        case .disabled:
+            pauseButton.isEnabled = false
+        }
     }
     
     @IBAction func didTapStartStopButton(_ sender: UIButton) {
         switch gameManager.currentState {
         case .ready:
             gameManager.startGame()
-            showParticipantSelectors(false, animated: true)
-            updateStartStopButtonState(.stop)
         case .inProgress:
             gameManager.stopGame()
-            showParticipantSelectors(true, animated: true)
-            updateStartStopButtonState(.reset)
         case .finished:
             gameManager.resetGame()
-            updateStartStopButtonState(.start)
         default:
             break
         }
     }
     
     @IBAction func didTapPauseButton(_ sender: UIButton) {
-        
+        switch gameManager.currentState {
+        case .inProgress:
+            gameManager.pauseGame()
+        case .paused:
+            gameManager.resumeGame()
+        default:
+            break
+        }
     }
     
 }
@@ -181,6 +204,14 @@ extension MainViewController: GameManagerDelegate {
         }
     }
     
+    func updateParticipantName(_ name: String, for side: FieldSide) {
+        if side == .left {
+            leftRobotNameLabel.text = name
+        } else {
+            rightRobotNameLabel.text = name
+        }
+    }
+    
     func placeShoot(at point: CGPoint, onField field: FieldSide, isHit: Bool) {
         let fieldView = field == .left ? leftFieldView : rightFieldView
         fieldView?.update(point: point, with: isHit ? .black : .red, textColor: isHit ? .white : .black)
@@ -196,18 +227,25 @@ extension MainViewController: GameManagerDelegate {
         case .notReady:
             mainInfoLabel.text = "Please choose the participants"
             updateStartStopButtonState(.disabled)
+            showParticipantSelectors(true, animated: true)
+            updatePauseButtonState(.disabled)
         case .ready:
             mainInfoLabel.text = "Press Start to begin"
             updateStartStopButtonState(.start)
             showParticipantSelectors(true, animated: true)
+            updatePauseButtonState(.disabled)
         case .inProgress:
             mainInfoLabel.text = "Game in progress"
             updateStartStopButtonState(.stop)
+            showParticipantSelectors(false, animated: true)
+            updatePauseButtonState(.pause)
         case .finished:
             mainInfoLabel.text = "Game has been finished"
             updateStartStopButtonState(.reset)
+            updatePauseButtonState(.disabled)
         case .paused:
             mainInfoLabel.text = "Game has been paused. Press Resume to continue."
+            updatePauseButtonState(.resume)
         }
     }
 }
