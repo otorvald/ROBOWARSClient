@@ -75,6 +75,7 @@ class GameManager {
         }
     }
     
+    private let timeInterval: TimeInterval = 0.01
     private var selectedLeftRobotIndex: Int?
     private var selectedRightRobotIndex: Int?
     
@@ -95,7 +96,7 @@ class GameManager {
         let randFlag = (Int.random(in: 0...1) % 2 == 0)
         shootingParticipant = randFlag ? currentLeftParticipant : currentRightParticipant
         receiverParticipant = randFlag ? currentRightParticipant : currentLeftParticipant
-        gamingTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        gamingTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         currentState = .inProgress
     }
     
@@ -105,7 +106,7 @@ class GameManager {
     }
     
     func resumeGame() {
-        gamingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        gamingTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         currentState = .inProgress
     }
     

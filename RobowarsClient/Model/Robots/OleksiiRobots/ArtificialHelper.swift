@@ -28,10 +28,7 @@ class ArtificialHelper {
             }
             return true
         }
-        // Remove test ship
-        addShip(CGRect(x: 18, y: 17, width: 2, height: 3))
-//        for _ in 0..<shipsCount {
-        for _ in 1..<shipsCount {
+        for _ in 0..<shipsCount {
             var ship = randomShipPositionFor(field, sizes: sizes)
             while validateShip(ship) == false {
                 ship = randomShipPositionFor(field, sizes: sizes)
