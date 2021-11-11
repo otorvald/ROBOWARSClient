@@ -7,9 +7,16 @@
 
 import UIKit
 
-enum FieldSide {
-    case right
-    case left
+enum FieldSide: String {
+    case right = "right"
+    case left = "left"
+}
+
+enum ShipPlacementError: Error {
+    case incorrectShipCount
+    case incorrectShipSize
+    case shipsIntersection
+    case shipsOutOfField
 }
 
 enum GameState {
@@ -26,6 +33,9 @@ protocol GameManagerDelegate: AnyObject {
     func updateParticipantMessage(_ message: String, for side: FieldSide)
     func updateParticipantName(_ name: String, for side: FieldSide)
     func gameStateDidChange(to state: GameState)
+    func shipPlacementDidFail(with error: ShipPlacementError, forRobotWithName name: String)
+    func didPlaceShipsForRobot(name: String)
+    func didFinishGame(withWinner winnerName: String, on side: FieldSide)
 }
 
 class Participant {
@@ -72,7 +82,7 @@ class GameManager {
     
     init() {
         func createParticipants() -> [RobotProtocol] {
-            return [PrimitiveRobot(), ArtificialTeapot(), ArtificialСalculator()]
+            return [PrimitiveRobot(), ArtificialTeapot()]
         }
         
         leftRobots = createParticipants()
@@ -95,7 +105,7 @@ class GameManager {
     }
     
     func resumeGame() {
-        gamingTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        gamingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         currentState = .inProgress
     }
     
@@ -113,30 +123,16 @@ class GameManager {
     
     func setLeftParticipant(index: Int) {
         guard index < leftRobots.count else { return }
-        helper.updateRules(fieldRect: fieldRect, shipsCount: shipsCount, shipSizes: shipSizes)
         let robot = leftRobots[index]
         selectedLeftRobotIndex = index
-        informAboutRules(robot: robot)
-        let side: FieldSide = .left
-        let ships = loadShips(for: robot, onField: side)
-        currentLeftParticipant = Participant(robot: robot, side: side, ships: ships)
-        delegate?.updateParticipantMessage(robot.greetingMessage, for: .left)
-        delegate?.updateParticipantName(robot.name, for: .left)
-        updateToReadyStateIfNeeded()
+        performInitialSetup(for: robot, on: .left)
     }
     
     func setRightParticipant(index: Int) {
         guard index < rightRobots.count else { return }
-        helper.updateRules(fieldRect: fieldRect, shipsCount: shipsCount, shipSizes: shipSizes)
         let robot = rightRobots[index]
         selectedRightRobotIndex = index
-        informAboutRules(robot: robot)
-        let side: FieldSide = .right
-        let ships = loadShips(for: robot, onField: side)
-        currentRightParticipant = Participant(robot: robot, side: side, ships: ships)
-        delegate?.updateParticipantMessage(robot.greetingMessage, for: .right)
-        delegate?.updateParticipantName(robot.name, for: .right)
-        updateToReadyStateIfNeeded()
+        performInitialSetup(for: robot, on: .right)
     }
     
     @objc private func fireTimer() {
@@ -169,6 +165,7 @@ class GameManager {
             shootingParticipant.robot.gameOver()
             receiverParticipant.robot.gameOver()
             stopGame()
+            delegate?.didFinishGame(withWinner: shootingParticipant.robot.name, on: shootingParticipant.side)
         }
         
         DispatchQueue.main.async {
@@ -176,6 +173,29 @@ class GameManager {
         }
         
         if result == .missed || result == .reHit { swapShooterAndReceiver() }
+    }
+    
+    private func performInitialSetup(for robot: RobotProtocol, on side: FieldSide) {
+        helper.updateRules(fieldRect: fieldRect, shipsCount: shipsCount, shipSizes: shipSizes)
+        informAboutRules(robot: robot)
+        let shipRects = robot.getShips()
+        let ships = shipRects.map { Ship(frame: $0) }
+        delegate?.placeShips(withRects: shipRects, onField: side)
+        delegate?.updateParticipantMessage(robot.greetingMessage, for: side)
+        delegate?.updateParticipantName(robot.name, for: side)
+        if side == .right {
+            currentRightParticipant = Participant(robot: robot, side: side, ships: ships)
+        } else {
+            currentLeftParticipant = Participant(robot: robot, side: side, ships: ships)
+        }
+        
+        do {
+            try helper.validateShips(shipRects)
+            delegate?.didPlaceShipsForRobot(name: robot.name)
+            updateToReadyStateIfNeeded()
+        } catch {
+            delegate?.shipPlacementDidFail(with: error as! ShipPlacementError, forRobotWithName: robot.name)
+        }
     }
     
     private func updateToReadyStateIfNeeded() {
@@ -196,15 +216,6 @@ class GameManager {
         robot.defineFieldRect(fieldRect)
         robot.defineShipsCount(shipsCount)
         robot.definePossibleShipSizes(shipSizes)
-    }
-    
-    private func loadShips(for robot: RobotProtocol, onField field: FieldSide) -> [Ship] {
-        var shipRects = robot.getShips()
-        while(helper.validateShips(shipRects) != true) { //TODO: ban participant in case incorrect placement
-            shipRects = robot.getShips()
-        }
-        delegate?.placeShips(withRects: shipRects, onField: field)
-        return shipRects.map{ Ship(frame: $0) }
     }
     
     private func showRobotsFinalMessages() {
@@ -233,32 +244,35 @@ class GameManagerHelper {
         return fieldRect.contains(point)
     }
     
-    func validateShips(_ ships: [CGRect]) -> Bool {
+    func validateShips(_ ships: [CGRect]) throws{
         guard ships.count == shipsCount else {
             print("incorrect ships count")
-            return false
+            throw ShipPlacementError.incorrectShipCount
         }
+        
         var deadZones = [CGRect]()
         for ship in ships {
             guard shipSizes.contains(ship.size) else {
                 print("incorrect ships size")
-                return false
+                throw ShipPlacementError.incorrectShipSize
             }
+            
             guard ship.minX.isLess(than: 0) == false,
                     ship.minY.isLess(than: 0) == false,
                     ship.maxX.isLessThanOrEqualTo(fieldRect.maxX),
                     ship.maxY.isLessThanOrEqualTo(fieldRect.maxY) else {
                 print("incorrect coordinates size")
-                return false
+                        throw ShipPlacementError.shipsOutOfField
             }
+            
             for deadZone in deadZones {
                 guard deadZone.intersects(ship) == false else {
                     print("ships is too close")
-                    return false
+                    throw ShipPlacementError.shipsIntersection
                 }
             }
+            
             deadZones.append(CGRect(x: ship.minX - 1, y: ship.minY - 1, width: ship.width + 2, height: ship.height + 2))
         }
-        return true
     }
 }

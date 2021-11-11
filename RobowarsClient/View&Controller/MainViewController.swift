@@ -196,6 +196,27 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension MainViewController: GameManagerDelegate {
+    func didFinishGame(withWinner winnerName: String, on side: FieldSide) {
+        mainInfoLabel.text = "\(winnerName) on the \(side.rawValue) side wins this round. Congratz!"
+    }
+    
+    func didPlaceShipsForRobot(name: String) {
+        mainInfoLabel.text = "Robot \(name) ships validation passed."
+    }
+    
+    func shipPlacementDidFail(with error: ShipPlacementError, forRobotWithName name: String) {
+        switch error {
+        case .incorrectShipCount:
+            mainInfoLabel.text = "Robot \(name) returns wrong amount of ships!"
+        case .incorrectShipSize:
+            mainInfoLabel.text = "Robot \(name) returns ships with incorrect size!"
+        case .shipsIntersection:
+            mainInfoLabel.text = "Robot \(name) returns ships that intersect each other or are connected!"
+        case .shipsOutOfField:
+            mainInfoLabel.text = "Robot \(name) returns ships with out of field positions!"
+        }
+    }
+    
     func updateParticipantMessage(_ message: String, for side: FieldSide) {
         if side == .left {
             leftRobotMessageLabel.text = message
@@ -240,7 +261,6 @@ extension MainViewController: GameManagerDelegate {
             showParticipantSelectors(false, animated: true)
             updatePauseButtonState(.pause)
         case .finished:
-            mainInfoLabel.text = "Game has been finished"
             updateStartStopButtonState(.reset)
             updatePauseButtonState(.disabled)
         case .paused:

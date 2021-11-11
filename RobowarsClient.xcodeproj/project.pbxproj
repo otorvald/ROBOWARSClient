@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		00033BDB273A81CD0025C6DE /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BDA273A81CD0025C6DE /* Ship.swift */; };
 		00033BE4273A901E0025C6DE /* ArtificialHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE1273A901E0025C6DE /* ArtificialHelper.swift */; };
-		00033BE5273A901E0025C6DE /* ArtificialСalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE2273A901E0025C6DE /* ArtificialСalculator.swift */; };
 		00033BE6273A901E0025C6DE /* ArtificialTeapot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */; };
 		009C6A29270B3A7800ADC396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A28270B3A7800ADC396 /* AppDelegate.swift */; };
 		009C6A2B270B3A7800ADC396 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A2A270B3A7800ADC396 /* SceneDelegate.swift */; };
@@ -27,7 +26,6 @@
 /* Begin PBXFileReference section */
 		00033BDA273A81CD0025C6DE /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
 		00033BE1273A901E0025C6DE /* ArtificialHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtificialHelper.swift; sourceTree = "<group>"; };
-		00033BE2273A901E0025C6DE /* ArtificialСalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArtificialСalculator.swift"; sourceTree = "<group>"; };
 		00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtificialTeapot.swift; sourceTree = "<group>"; };
 		009C6A25270B3A7800ADC396 /* RobowarsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobowarsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009C6A28270B3A7800ADC396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,14 +73,13 @@
 			path = "View&Controller";
 			sourceTree = "<group>";
 		};
-		00033BE0273A901E0025C6DE /* CustomRobots */ = {
+		00033BE0273A901E0025C6DE /* OleksiiRobots */ = {
 			isa = PBXGroup;
 			children = (
 				00033BE1273A901E0025C6DE /* ArtificialHelper.swift */,
-				00033BE2273A901E0025C6DE /* ArtificialСalculator.swift */,
 				00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */,
 			);
-			path = CustomRobots;
+			path = OleksiiRobots;
 			sourceTree = "<group>";
 		};
 		009C6A1C270B3A7800ADC396 = {
@@ -120,7 +117,7 @@
 		60ECFC5A271623520096D43B /* Robots */ = {
 			isa = PBXGroup;
 			children = (
-				00033BE0273A901E0025C6DE /* CustomRobots */,
+				00033BE0273A901E0025C6DE /* OleksiiRobots */,
 				60ECFC5B271623910096D43B /* PrimitiveRobot.swift */,
 			);
 			path = Robots;
@@ -206,7 +203,6 @@
 				00033BE6273A901E0025C6DE /* ArtificialTeapot.swift in Sources */,
 				00033BE4273A901E0025C6DE /* ArtificialHelper.swift in Sources */,
 				009C6A3F270B3C6C00ADC396 /* RobotProtocol.swift in Sources */,
-				00033BE5273A901E0025C6DE /* ArtificialСalculator.swift in Sources */,
 				009C6A2B270B3A7800ADC396 /* SceneDelegate.swift in Sources */,
 				600CFAA0270D038800743FCB /* FieldView.swift in Sources */,
 			);
