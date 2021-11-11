@@ -24,6 +24,7 @@ protocol GameManagerDelegate: AnyObject {
     func placeShips(withRects rects: [CGRect], onField field: FieldSide)
     func placeShoot(at point: CGPoint, onField field: FieldSide, isHit: Bool)
     func updateParticipantMessage(_ message: String, for side: FieldSide)
+    func updateParticipantName(_ name: String, for side: FieldSide)
     func gameStateDidChange(to state: GameState)
 }
 
@@ -93,6 +94,11 @@ class GameManager {
         currentState = .paused
     }
     
+    func resumeGame() {
+        gamingTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        currentState = .inProgress
+    }
+    
     func stopGame() {
         gamingTimer?.invalidate()
         currentState = .finished
@@ -115,6 +121,7 @@ class GameManager {
         let ships = loadShips(for: robot, onField: side)
         currentLeftParticipant = Participant(robot: robot, side: side, ships: ships)
         delegate?.updateParticipantMessage(robot.greetingMessage, for: .left)
+        delegate?.updateParticipantName(robot.name, for: .left)
         updateToReadyStateIfNeeded()
     }
     
@@ -128,6 +135,7 @@ class GameManager {
         let ships = loadShips(for: robot, onField: side)
         currentRightParticipant = Participant(robot: robot, side: side, ships: ships)
         delegate?.updateParticipantMessage(robot.greetingMessage, for: .right)
+        delegate?.updateParticipantName(robot.name, for: .right)
         updateToReadyStateIfNeeded()
     }
     

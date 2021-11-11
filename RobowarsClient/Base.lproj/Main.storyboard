@@ -80,13 +80,13 @@ Cg
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Robot Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pe-EI-oss">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Robot Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pe-EI-oss">
                                 <rect key="frame" x="310" y="776" width="498" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Robot Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jy2-RE-EvV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Robot Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jy2-RE-EvV">
                                 <rect key="frame" x="838" y="776" width="498" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
@@ -124,6 +124,18 @@ Cg
                                     <action selector="didTapPauseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gNJ-6d-ltX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-Qw-IhY">
+                                <rect key="frame" x="310" y="224" width="498" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSQ-Zl-aD9">
+                                <rect key="frame" x="838" y="224" width="498" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,23 +144,29 @@ Cg
                             <constraint firstItem="paC-tj-zpc" firstAttribute="leading" secondItem="Z6l-9R-vGN" secondAttribute="trailing" constant="30" id="4Rt-nI-rlB"/>
                             <constraint firstItem="paC-tj-zpc" firstAttribute="bottom" secondItem="Z6l-9R-vGN" secondAttribute="bottom" id="4Xt-RL-JWZ"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="width" secondItem="SKp-RC-dtk" secondAttribute="width" id="5bg-3X-UBD"/>
+                            <constraint firstItem="Z6l-9R-vGN" firstAttribute="top" secondItem="mY1-Qw-IhY" secondAttribute="bottom" constant="10" id="5nN-IJ-UKY"/>
                             <constraint firstItem="6pe-EI-oss" firstAttribute="leading" secondItem="Z6l-9R-vGN" secondAttribute="leading" id="C4I-3N-fOS"/>
                             <constraint firstItem="jy2-RE-EvV" firstAttribute="top" secondItem="paC-tj-zpc" secondAttribute="bottom" constant="15" id="CcV-a9-IZ5"/>
                             <constraint firstItem="Z6l-9R-vGN" firstAttribute="leading" secondItem="SKp-RC-dtk" secondAttribute="trailing" constant="30" id="DaW-UD-EuR"/>
                             <constraint firstItem="7ID-6J-arA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="EPI-uM-JrK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="paC-tj-zpc" secondAttribute="trailing" constant="30" id="Jyd-Yp-UKe"/>
+                            <constraint firstItem="mY1-Qw-IhY" firstAttribute="leading" secondItem="Z6l-9R-vGN" secondAttribute="leading" id="Kq2-Pe-3jh"/>
                             <constraint firstItem="jy2-RE-EvV" firstAttribute="leading" secondItem="paC-tj-zpc" secondAttribute="leading" id="LCH-sS-cck"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="leading" secondItem="SKp-RC-dtk" secondAttribute="leading" id="M4R-fH-2Fm"/>
                             <constraint firstItem="Z6l-9R-vGN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="No9-uH-aRS"/>
                             <constraint firstItem="Edi-Eo-XLc" firstAttribute="leading" secondItem="paC-tj-zpc" secondAttribute="leading" id="PHt-oJ-YCI"/>
+                            <constraint firstItem="iSQ-Zl-aD9" firstAttribute="leading" secondItem="paC-tj-zpc" secondAttribute="leading" id="PSB-PG-Esh"/>
+                            <constraint firstItem="paC-tj-zpc" firstAttribute="top" secondItem="iSQ-Zl-aD9" secondAttribute="bottom" constant="10" id="TCm-Gv-hlr"/>
                             <constraint firstItem="6pe-EI-oss" firstAttribute="trailing" secondItem="Z6l-9R-vGN" secondAttribute="trailing" id="V50-vg-bw6"/>
                             <constraint firstItem="7ID-6J-arA" firstAttribute="top" secondItem="SKp-RC-dtk" secondAttribute="bottom" constant="10" id="Zrl-Xn-dLA"/>
                             <constraint firstItem="SKp-RC-dtk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="aYo-iB-dvI"/>
                             <constraint firstItem="Z6l-9R-vGN" firstAttribute="leading" secondItem="tVc-rM-VHf" secondAttribute="leading" id="akn-iO-hur"/>
+                            <constraint firstItem="mY1-Qw-IhY" firstAttribute="trailing" secondItem="Z6l-9R-vGN" secondAttribute="trailing" id="bld-MQ-iQn"/>
                             <constraint firstAttribute="bottom" secondItem="dZL-mr-S5W" secondAttribute="bottom" constant="20" id="bps-l0-9cV"/>
                             <constraint firstItem="Edi-Eo-XLc" firstAttribute="top" secondItem="jy2-RE-EvV" secondAttribute="bottom" constant="30" id="cDf-ho-Ssa"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="trailing" secondItem="SKp-RC-dtk" secondAttribute="trailing" id="dzT-Ew-fs6"/>
                             <constraint firstItem="o3x-oQ-qhU" firstAttribute="trailing" secondItem="Z6l-9R-vGN" secondAttribute="trailing" id="fav-re-pWX"/>
+                            <constraint firstItem="iSQ-Zl-aD9" firstAttribute="trailing" secondItem="paC-tj-zpc" secondAttribute="trailing" id="ift-Vl-Kkv"/>
                             <constraint firstItem="dZL-mr-S5W" firstAttribute="centerX" secondItem="7ID-6J-arA" secondAttribute="centerX" id="kmi-Cc-0mr"/>
                             <constraint firstItem="SKp-RC-dtk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="q5q-kW-LuV"/>
                             <constraint firstItem="paC-tj-zpc" firstAttribute="top" secondItem="Z6l-9R-vGN" secondAttribute="top" id="ro4-hB-Fxz"/>
@@ -164,6 +182,7 @@ Cg
                         <outlet property="leftFieldContentView" destination="Z6l-9R-vGN" id="nJh-Em-poe"/>
                         <outlet property="leftParticipantSelectorTableView" destination="SKp-RC-dtk" id="qcg-in-3QX"/>
                         <outlet property="leftRobotMessageLabel" destination="6pe-EI-oss" id="sNj-BT-Oiw"/>
+                        <outlet property="leftRobotNameLabel" destination="mY1-Qw-IhY" id="Ooe-9q-hYK"/>
                         <outlet property="mainInfoLabel" destination="tVc-rM-VHf" id="DQ9-eo-A7j"/>
                         <outlet property="participantSelectionLeadingSpaceConstraint" destination="aYo-iB-dvI" id="j2P-GK-fm2"/>
                         <outlet property="participantSelectorWidthConstraint" destination="orX-Dq-rMn" id="ckm-e7-LUE"/>
@@ -171,13 +190,14 @@ Cg
                         <outlet property="rightFieldContentView" destination="paC-tj-zpc" id="oio-rC-LWL"/>
                         <outlet property="rightParticipantSelectorTableView" destination="dZL-mr-S5W" id="fNE-cp-6oh"/>
                         <outlet property="rightRobotMessageLabel" destination="jy2-RE-EvV" id="hrf-2G-mZn"/>
+                        <outlet property="rightRobotNameLabel" destination="iSQ-Zl-aD9" id="wS7-1t-et2"/>
                         <outlet property="startStopButton" destination="o3x-oQ-qhU" id="dgb-85-tVs"/>
                         <outlet property="versulLabel" destination="7ID-6J-arA" id="l6z-HH-jVF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="29.296874999999996" y="96.875"/>
+            <point key="canvasLocation" x="28.98975109809663" y="96.6796875"/>
         </scene>
     </scenes>
     <resources>
