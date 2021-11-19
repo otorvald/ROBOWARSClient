@@ -62,18 +62,9 @@ class PrimitiveRobot: RobotProtocol {
     }
     
     private func plaсeShips() -> [CGRect] {
-        guard let shipsCount = shipsCount else { return [] }
-        var ships = [CGRect]()
-        
-        for _ in 0..<shipsCount {
-            let shipSize = possibleShipSizes![Int.random(in: 0..<possibleShipSizes!.count)]
-            let shipOriginX = Int.random(in: 0..<Int(fieldRect!.maxX-shipSize.width))
-            let shipOriginY = Int.random(in: 0..<Int(fieldRect!.maxY-shipSize.height))
-            let ship = CGRect(origin: CGPoint(x: shipOriginX, y: shipOriginY),
-                              size: shipSize)
-            ships.append(ship)
-        }
-        
-        return ships
+        guard let shipsCount = shipsCount,
+                let sizes = possibleShipSizes,
+                let field = fieldRect else { return [] }
+        return ArtificialHelper.randomShipsFor(field, sizes: sizes, shipsCount: shipsCount)
     }
 }
