@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="RWTournamentSetupView" customModule="RobowarsClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tjT-rB-36F">
+                    <rect key="frame" x="20" y="22" width="546.5" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="8ZF-6L-cFm"/>
+                    </constraints>
+                    <color key="sectionIndexBackgroundColor" systemColor="systemGrayColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="lv1-Un-4qn"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="vrd-Wy-XI1"/>
+                    </connections>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cIC-cP-49j">
+                    <rect key="frame" x="799.5" y="22" width="546.5" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Cxd-zD-sRj"/>
+                    </constraints>
+                    <color key="sectionIndexBackgroundColor" systemColor="systemGrayColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="wSZ-Q2-PCW"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="Ikq-dA-al7"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N62-F6-d8u">
+                    <rect key="frame" x="655" y="26.5" width="56" height="51"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="42"/>
+                    <color key="textColor" systemColor="systemGreenColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upN-RO-GJi">
+                    <rect key="frame" x="616.5" y="924" width="133" height="56"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="START">
+                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="35"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="onStartButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qqa-Qs-SwA"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-oE-LXj">
+                    <rect key="frame" x="20" y="104" width="546.5" height="800"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="dbC-z0-MwH"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="W3H-yt-RXu"/>
+                    </connections>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Uwn-f2-oNA">
+                    <rect key="frame" x="799.5" y="104" width="546.5" height="800"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="VMp-6i-X4g"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="be0-oM-L5R"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="N62-F6-d8u" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2em-vM-Jzr"/>
+                <constraint firstAttribute="bottom" secondItem="Uwn-f2-oNA" secondAttribute="bottom" constant="120" id="2jf-uJ-Ke3"/>
+                <constraint firstAttribute="bottom" secondItem="x7X-oE-LXj" secondAttribute="bottom" constant="120" id="3PX-WJ-gUx"/>
+                <constraint firstAttribute="trailing" secondItem="cIC-cP-49j" secondAttribute="trailing" constant="20" id="5uV-Fu-15E"/>
+                <constraint firstItem="N62-F6-d8u" firstAttribute="centerY" secondItem="tjT-rB-36F" secondAttribute="centerY" id="7tI-5y-jFD"/>
+                <constraint firstItem="Uwn-f2-oNA" firstAttribute="width" secondItem="cIC-cP-49j" secondAttribute="width" id="8VI-e4-A0H"/>
+                <constraint firstItem="cIC-cP-49j" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="DDG-7x-gZZ"/>
+                <constraint firstItem="x7X-oE-LXj" firstAttribute="width" secondItem="tjT-rB-36F" secondAttribute="width" id="Jun-jS-ibo"/>
+                <constraint firstAttribute="bottom" secondItem="upN-RO-GJi" secondAttribute="bottom" constant="44" id="L7d-2O-cei"/>
+                <constraint firstItem="upN-RO-GJi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PDj-6J-BN8"/>
+                <constraint firstItem="tjT-rB-36F" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="SkO-PD-uLE"/>
+                <constraint firstItem="Uwn-f2-oNA" firstAttribute="trailing" secondItem="cIC-cP-49j" secondAttribute="trailing" id="aJ8-2b-DVp"/>
+                <constraint firstItem="Uwn-f2-oNA" firstAttribute="top" secondItem="cIC-cP-49j" secondAttribute="bottom" constant="22" id="aKr-dj-j3S"/>
+                <constraint firstItem="cIC-cP-49j" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="fIM-ge-deT"/>
+                <constraint firstItem="tjT-rB-36F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="re4-vb-BuP"/>
+                <constraint firstItem="tjT-rB-36F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="suR-cP-XTd"/>
+                <constraint firstItem="x7X-oE-LXj" firstAttribute="leading" secondItem="tjT-rB-36F" secondAttribute="leading" id="vBA-Bv-GTy"/>
+                <constraint firstItem="x7X-oE-LXj" firstAttribute="top" secondItem="tjT-rB-36F" secondAttribute="bottom" constant="22" id="zlk-0f-D00"/>
+            </constraints>
+            <connections>
+                <outlet property="fieldSizeTable" destination="x7X-oE-LXj" id="j1N-3j-iJp"/>
+                <outlet property="leftTable" destination="tjT-rB-36F" id="Hxe-s0-Mbq"/>
+                <outlet property="leftTableHeight" destination="8ZF-6L-cFm" id="MIw-iS-COQ"/>
+                <outlet property="leftTableLeading" destination="re4-vb-BuP" id="JUa-Sc-0Uq"/>
+                <outlet property="numberOfRoundsTable" destination="Uwn-f2-oNA" id="bZV-fC-ifc"/>
+                <outlet property="rightTable" destination="cIC-cP-49j" id="eu4-Pr-Kcq"/>
+                <outlet property="rightTableHeight" destination="Cxd-zD-sRj" id="wQu-Fz-nb2"/>
+                <outlet property="rightTableTrailing" destination="5uV-Fu-15E" id="Ubj-4k-yTY"/>
+                <outlet property="startButton" destination="upN-RO-GJi" id="DYc-wT-6Um"/>
+                <outlet property="versusLabel" destination="N62-F6-d8u" id="VMx-5M-1I7"/>
+                <outlet property="versusLabelCenterY" destination="7tI-5y-jFD" id="jEk-UK-ERs"/>
+            </connections>
+            <point key="canvasLocation" x="192" y="28"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

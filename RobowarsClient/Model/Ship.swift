@@ -23,6 +23,8 @@ class Ship {
         guard frame.contains(position) else { return .missed }
         if let index = lives.firstIndex(of: position) {
             lives.remove(at: index)
+        } else {
+            return .reHit
         }
         
         if lives.isEmpty { return .killed }

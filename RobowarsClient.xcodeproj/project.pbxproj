@@ -11,7 +11,6 @@
 		00033BE4273A901E0025C6DE /* ArtificialHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE1273A901E0025C6DE /* ArtificialHelper.swift */; };
 		00033BE6273A901E0025C6DE /* ArtificialTeapot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */; };
 		009C6A29270B3A7800ADC396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A28270B3A7800ADC396 /* AppDelegate.swift */; };
-		009C6A2B270B3A7800ADC396 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A2A270B3A7800ADC396 /* SceneDelegate.swift */; };
 		009C6A2D270B3A7800ADC396 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C6A2C270B3A7800ADC396 /* MainViewController.swift */; };
 		009C6A30270B3A7800ADC396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009C6A2E270B3A7800ADC396 /* Main.storyboard */; };
 		009C6A32270B3A7900ADC396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 009C6A31270B3A7900ADC396 /* Assets.xcassets */; };
@@ -21,6 +20,25 @@
 		600CFAA2270D03DE00743FCB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CFAA1270D03DE00743FCB /* Extensions.swift */; };
 		60ECFC0F27138F6F0096D43B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC0E27138F6F0096D43B /* GameManager.swift */; };
 		60ECFC5C271623910096D43B /* PrimitiveRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ECFC5B271623910096D43B /* PrimitiveRobot.swift */; };
+		9B48CF25274B905700BFCD92 /* RWTournamentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CF24274B905700BFCD92 /* RWTournamentHeaderView.xib */; };
+		9B48CF27274B907000BFCD92 /* RWTournamentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CF26274B907000BFCD92 /* RWTournamentHeaderView.swift */; };
+		9B48CF29274B967900BFCD92 /* RWTournamentFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CF28274B967900BFCD92 /* RWTournamentFooterView.swift */; };
+		9B48CF2B274B968F00BFCD92 /* RWTournamentFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CF2A274B968F00BFCD92 /* RWTournamentFooterView.xib */; };
+		9B48CF2E274BC01200BFCD92 /* RWTournamentResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CF2D274BC01200BFCD92 /* RWTournamentResultView.swift */; };
+		9B48CF30274BC01C00BFCD92 /* RWTournamentResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CF2F274BC01C00BFCD92 /* RWTournamentResultView.xib */; };
+		9B48CF33274BC45600BFCD92 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CF31274BC45600BFCD92 /* ResultTableViewCell.swift */; };
+		9B48CF34274BC45600BFCD92 /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CF32274BC45600BFCD92 /* ResultTableViewCell.xib */; };
+		9BEB6F922747C8CB00CF96D4 /* RWTournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6F902747C8CB00CF96D4 /* RWTournamentViewController.swift */; };
+		9BEB6F932747C8CB00CF96D4 /* RWTournamentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BEB6F912747C8CB00CF96D4 /* RWTournamentViewController.xib */; };
+		9BEB6F962747CD4300CF96D4 /* RWTournamentSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6F952747CD4300CF96D4 /* RWTournamentSetupView.swift */; };
+		9BEB6F982747CD4F00CF96D4 /* RWTournamentSetupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BEB6F972747CD4F00CF96D4 /* RWTournamentSetupView.xib */; };
+		9BEB6F9E2747E00C00CF96D4 /* RWTournamentBattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6F9D2747E00C00CF96D4 /* RWTournamentBattleView.swift */; };
+		9BEB6FA02747E01900CF96D4 /* RWTournamentBattleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BEB6F9F2747E01900CF96D4 /* RWTournamentBattleView.xib */; };
+		9BEB6FA22747E66000CF96D4 /* RWTournamentGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6FA12747E66000CF96D4 /* RWTournamentGameManager.swift */; };
+		9BEB6FA72747EE1C00CF96D4 /* ArtificalGunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6FA42747EE1C00CF96D4 /* ArtificalGunner.swift */; };
+		9BEB6FA82747EE1C00CF96D4 /* ArtificialСalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6FA52747EE1C00CF96D4 /* ArtificialСalculator.swift */; };
+		9BEB6FAA2747F56800CF96D4 /* RWTournamentResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6FA92747F56800CF96D4 /* RWTournamentResults.swift */; };
+		9BEB6FAC2747F5F800CF96D4 /* RWTournamentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB6FAB2747F5F800CF96D4 /* RWTournamentManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +47,6 @@
 		00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtificialTeapot.swift; sourceTree = "<group>"; };
 		009C6A25270B3A7800ADC396 /* RobowarsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobowarsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009C6A28270B3A7800ADC396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		009C6A2A270B3A7800ADC396 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		009C6A2C270B3A7800ADC396 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		009C6A2F270B3A7800ADC396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		009C6A31270B3A7900ADC396 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +57,25 @@
 		600CFAA1270D03DE00743FCB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60ECFC0E27138F6F0096D43B /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		60ECFC5B271623910096D43B /* PrimitiveRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveRobot.swift; sourceTree = "<group>"; };
+		9B48CF24274B905700BFCD92 /* RWTournamentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWTournamentHeaderView.xib; sourceTree = "<group>"; };
+		9B48CF26274B907000BFCD92 /* RWTournamentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentHeaderView.swift; sourceTree = "<group>"; };
+		9B48CF28274B967900BFCD92 /* RWTournamentFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentFooterView.swift; sourceTree = "<group>"; };
+		9B48CF2A274B968F00BFCD92 /* RWTournamentFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWTournamentFooterView.xib; sourceTree = "<group>"; };
+		9B48CF2D274BC01200BFCD92 /* RWTournamentResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentResultView.swift; sourceTree = "<group>"; };
+		9B48CF2F274BC01C00BFCD92 /* RWTournamentResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWTournamentResultView.xib; sourceTree = "<group>"; };
+		9B48CF31274BC45600BFCD92 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		9B48CF32274BC45600BFCD92 /* ResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultTableViewCell.xib; sourceTree = "<group>"; };
+		9BEB6F902747C8CB00CF96D4 /* RWTournamentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentViewController.swift; sourceTree = "<group>"; };
+		9BEB6F912747C8CB00CF96D4 /* RWTournamentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWTournamentViewController.xib; sourceTree = "<group>"; };
+		9BEB6F952747CD4300CF96D4 /* RWTournamentSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentSetupView.swift; sourceTree = "<group>"; };
+		9BEB6F972747CD4F00CF96D4 /* RWTournamentSetupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWTournamentSetupView.xib; sourceTree = "<group>"; };
+		9BEB6F9D2747E00C00CF96D4 /* RWTournamentBattleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentBattleView.swift; sourceTree = "<group>"; };
+		9BEB6F9F2747E01900CF96D4 /* RWTournamentBattleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWTournamentBattleView.xib; sourceTree = "<group>"; };
+		9BEB6FA12747E66000CF96D4 /* RWTournamentGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentGameManager.swift; sourceTree = "<group>"; };
+		9BEB6FA42747EE1C00CF96D4 /* ArtificalGunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtificalGunner.swift; sourceTree = "<group>"; };
+		9BEB6FA52747EE1C00CF96D4 /* ArtificialСalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArtificialСalculator.swift"; sourceTree = "<group>"; };
+		9BEB6FA92747F56800CF96D4 /* RWTournamentResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentResults.swift; sourceTree = "<group>"; };
+		9BEB6FAB2747F5F800CF96D4 /* RWTournamentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWTournamentManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +114,8 @@
 			children = (
 				00033BE1273A901E0025C6DE /* ArtificialHelper.swift */,
 				00033BE3273A901E0025C6DE /* ArtificialTeapot.swift */,
+				9BEB6FA42747EE1C00CF96D4 /* ArtificalGunner.swift */,
+				9BEB6FA52747EE1C00CF96D4 /* ArtificialСalculator.swift */,
 			);
 			path = OleksiiRobots;
 			sourceTree = "<group>";
@@ -101,10 +139,10 @@
 		009C6A27270B3A7800ADC396 /* RobowarsClient */ = {
 			isa = PBXGroup;
 			children = (
+				9BEB6F8D2747C88D00CF96D4 /* Tournament */,
 				00033BDF273A81F30025C6DE /* View&Controller */,
 				00033BDC273A81D80025C6DE /* Model */,
 				009C6A28270B3A7800ADC396 /* AppDelegate.swift */,
-				009C6A2A270B3A7800ADC396 /* SceneDelegate.swift */,
 				600CFAA1270D03DE00743FCB /* Extensions.swift */,
 				009C6A2E270B3A7800ADC396 /* Main.storyboard */,
 				009C6A31270B3A7900ADC396 /* Assets.xcassets */,
@@ -121,6 +159,54 @@
 				60ECFC5B271623910096D43B /* PrimitiveRobot.swift */,
 			);
 			path = Robots;
+			sourceTree = "<group>";
+		};
+		9B48CF2C274BBFEE00BFCD92 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				9B48CF2D274BC01200BFCD92 /* RWTournamentResultView.swift */,
+				9B48CF2F274BC01C00BFCD92 /* RWTournamentResultView.xib */,
+				9B48CF31274BC45600BFCD92 /* ResultTableViewCell.swift */,
+				9B48CF32274BC45600BFCD92 /* ResultTableViewCell.xib */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
+		9BEB6F8D2747C88D00CF96D4 /* Tournament */ = {
+			isa = PBXGroup;
+			children = (
+				9BEB6F902747C8CB00CF96D4 /* RWTournamentViewController.swift */,
+				9BEB6F912747C8CB00CF96D4 /* RWTournamentViewController.xib */,
+				9BEB6FA92747F56800CF96D4 /* RWTournamentResults.swift */,
+				9BEB6FAB2747F5F800CF96D4 /* RWTournamentManager.swift */,
+				9BEB6F942747CD0D00CF96D4 /* Setup */,
+				9BEB6F9C2747DFEB00CF96D4 /* Battle */,
+				9B48CF2C274BBFEE00BFCD92 /* Results */,
+			);
+			path = Tournament;
+			sourceTree = "<group>";
+		};
+		9BEB6F942747CD0D00CF96D4 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				9BEB6F952747CD4300CF96D4 /* RWTournamentSetupView.swift */,
+				9BEB6F972747CD4F00CF96D4 /* RWTournamentSetupView.xib */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		9BEB6F9C2747DFEB00CF96D4 /* Battle */ = {
+			isa = PBXGroup;
+			children = (
+				9BEB6FA12747E66000CF96D4 /* RWTournamentGameManager.swift */,
+				9BEB6F9D2747E00C00CF96D4 /* RWTournamentBattleView.swift */,
+				9BEB6F9F2747E01900CF96D4 /* RWTournamentBattleView.xib */,
+				9B48CF26274B907000BFCD92 /* RWTournamentHeaderView.swift */,
+				9B48CF24274B905700BFCD92 /* RWTournamentHeaderView.xib */,
+				9B48CF28274B967900BFCD92 /* RWTournamentFooterView.swift */,
+				9B48CF2A274B968F00BFCD92 /* RWTournamentFooterView.xib */,
+			);
+			path = Battle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,8 +267,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B48CF34274BC45600BFCD92 /* ResultTableViewCell.xib in Resources */,
+				9BEB6F932747C8CB00CF96D4 /* RWTournamentViewController.xib in Resources */,
+				9B48CF25274B905700BFCD92 /* RWTournamentHeaderView.xib in Resources */,
+				9B48CF30274BC01C00BFCD92 /* RWTournamentResultView.xib in Resources */,
 				009C6A35270B3A7900ADC396 /* LaunchScreen.storyboard in Resources */,
+				9B48CF2B274B968F00BFCD92 /* RWTournamentFooterView.xib in Resources */,
+				9BEB6FA02747E01900CF96D4 /* RWTournamentBattleView.xib in Resources */,
 				009C6A32270B3A7900ADC396 /* Assets.xcassets in Resources */,
+				9BEB6F982747CD4F00CF96D4 /* RWTournamentSetupView.xib in Resources */,
 				009C6A30270B3A7800ADC396 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,16 +287,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B48CF29274B967900BFCD92 /* RWTournamentFooterView.swift in Sources */,
+				9B48CF33274BC45600BFCD92 /* ResultTableViewCell.swift in Sources */,
+				9BEB6F9E2747E00C00CF96D4 /* RWTournamentBattleView.swift in Sources */,
+				9BEB6FA82747EE1C00CF96D4 /* ArtificialСalculator.swift in Sources */,
+				9B48CF2E274BC01200BFCD92 /* RWTournamentResultView.swift in Sources */,
+				9BEB6F962747CD4300CF96D4 /* RWTournamentSetupView.swift in Sources */,
+				9BEB6F922747C8CB00CF96D4 /* RWTournamentViewController.swift in Sources */,
+				9BEB6FAA2747F56800CF96D4 /* RWTournamentResults.swift in Sources */,
+				9B48CF27274B907000BFCD92 /* RWTournamentHeaderView.swift in Sources */,
 				60ECFC5C271623910096D43B /* PrimitiveRobot.swift in Sources */,
 				009C6A2D270B3A7800ADC396 /* MainViewController.swift in Sources */,
 				600CFAA2270D03DE00743FCB /* Extensions.swift in Sources */,
+				9BEB6FAC2747F5F800CF96D4 /* RWTournamentManager.swift in Sources */,
 				00033BDB273A81CD0025C6DE /* Ship.swift in Sources */,
 				009C6A29270B3A7800ADC396 /* AppDelegate.swift in Sources */,
 				60ECFC0F27138F6F0096D43B /* GameManager.swift in Sources */,
+				9BEB6FA22747E66000CF96D4 /* RWTournamentGameManager.swift in Sources */,
 				00033BE6273A901E0025C6DE /* ArtificialTeapot.swift in Sources */,
 				00033BE4273A901E0025C6DE /* ArtificialHelper.swift in Sources */,
 				009C6A3F270B3C6C00ADC396 /* RobotProtocol.swift in Sources */,
-				009C6A2B270B3A7800ADC396 /* SceneDelegate.swift in Sources */,
+				9BEB6FA72747EE1C00CF96D4 /* ArtificalGunner.swift in Sources */,
 				600CFAA0270D038800743FCB /* FieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
